@@ -1,0 +1,12 @@
+[project]
+name = "Multi-Agent Research System"
+enable_telemetry = false
+
+[features]
+prompt_playground = false
+multi_modal.enabled = false
+
+[UI]
+name = "Research Agent"
+description = "A multi-agent research pipeline powered by LangGraph"
+default_theme = "dark"
