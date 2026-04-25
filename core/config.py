@@ -3,7 +3,7 @@ Configuration for models, API keys, and model tiering strategy.
 
 Model Tiering:
   - Lightweight tasks (routing, planning) → Groq Llama 3.3 70B (free, fast)
-  - Heavy tasks (synthesis, reasoning)   → Gemini 2.0 Flash (free, powerful)
+  - Heavy tasks (synthesis, reasoning)   → Gemini 2.5 Flash (free, powerful)
 """
 
 import os
@@ -23,7 +23,9 @@ FAST_MODEL = "llama-3.3-70b-versatile"  # via Groq — free tier
 FAST_MODEL_PROVIDER = "groq"
 
 # Tier 2: Powerful (synthesis, deep reasoning, long-context)
-POWER_MODEL = "gemini-2.0-flash"  # via Google — free tier
+# NOTE: "gemini-2.0-flash" was retired for new users.
+# "gemini-2.5-flash" is the current free-tier model.
+POWER_MODEL = "gemini-2.5-flash"  # via Google — free tier
 POWER_MODEL_PROVIDER = "google"
 
 # --- Task → Model Mapping ---

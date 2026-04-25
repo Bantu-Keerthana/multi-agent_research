@@ -132,10 +132,20 @@ def _execute_search(description: str) -> tuple[str, list[str]]:
 
 def _duckduckgo_search(query: str, max_results: int = 5) -> tuple[str, list[str]]:
     """Search using DuckDuckGo (free, no API key needed)."""
-    from duckduckgo_search import DDGS
+    try:
+        from ddgs import DDGS  # new package name (pip install ddgs)
+    except ImportError:
+        from duckduckgo_search import DDGS  # fallback for old installs
+
+    # Shorten overly long queries — DuckDuckGo works best with concise terms
+    search_query = query
+    if len(query) > 100:
+        # Take the most meaningful part
+        words = query.split()
+        search_query = " ".join(words[:12])
 
     with DDGS() as ddgs:
-        results = list(ddgs.text(query, max_results=max_results))
+        results = list(ddgs.text(search_query, max_results=max_results))
 
     if not results:
         raise ValueError("No results from DuckDuckGo")
